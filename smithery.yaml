@@ -1,0 +1,33 @@
+# Smithery configuration for DETRAN MS Guia Flex: Multas
+# Schema: https://smithery.ai/docs/build/project-config
+# Remote HTTP MCP — server hosted at https://api.mcp.ai/p_detran_ms_multas_flex
+
+name: detran_ms_multas_flex-mcp
+displayName: "DETRAN MS Guia Flex: Multas"
+description: >
+  DETRAN MS Guia Flex: Multas, consulta em fonte oficial. Hospedado pela plataforma, sem credenciais da plataforma, pague por consulta com crédito pré-pago.
+
+version: 0.1.0
+license: MIT
+homepage: https://github.com/mcp-dir/detran_ms_multas_flex-mcp
+repository: https://github.com/mcp-dir/detran_ms_multas_flex-mcp
+
+tags:
+  - detran_ms_multas_flex
+  - brazil
+  - horizontal
+  - read-only
+
+# Remote HTTP MCP — sem startCommand local (servidor já hospedado)
+startCommand:
+  type: http
+  url: https://api.mcp.ai/p_detran_ms_multas_flex
+
+auth:
+  type: oauth2
+  resourceMetadataUrl: https://api.mcp.ai/p_detran_ms_multas_flex/.well-known/oauth-protected-resource
+  fallback:
+    type: agent-auth
+    description: >
+      Para clientes sem OAuth 2.1. O agente expõe uma tool authenticate(token).
+      Usuário gera o JWT em https://app.mcp.ai/agent-auth e cola no chat.
